@@ -6,13 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <script type="text/javascript" src="string-matching-algorithms.js"></script>
+    <!-- <script type="text/javascript" src="string-matching-algorithms.js"></script> -->
 
 </head>
 
 <body>
     <script>
-        let a = naive_string_matching("AB", "GFDHSAGABSAGSDGABASFGSAABF");
+        let create_table = (pattern) => {
+            var s = [];
+            for (let i = 0; i < pattern.length; i++) {
+                //console.log(i + " index - " + "size : " + pattern.length);
+                let letter = pattern.charAt(i);
+                let value = Math.max(1, (pattern.length - i - 1));
+                let is_letter_added = s.find(r => r.letter == letter);
+                if (is_letter_added) is_letter_added.value = value;
+                else s.push({
+                    "letter": letter,
+                    "value": value
+                });
+            }
+            return s;
+        }
+
+        let boyer = (pattern, text) => {
+            var pattern_found_indexes = [];
+            //create table for pattern
+            var table = create_table(pattern);
+
+            console.log(table);
+            // loop from 0 th index to (text length - pattern length) 'th index
+            let i = 0;
+            while (i <= (text.length - pattern.length)) {
+                let j = pattern.length - 1;
+
+                while (j >= 0 && (pattern.charAt(j) == text.charAt(i + j)))
+                    j--;
+
+                if (j < 0) // that means the inner while loop completed succesfully. so the pattern found at i index
+                {
+                    pattern_found_indexes.push(i);
+                    i++;
+                } else {
+                    var bad_match_char = text.charAt(i + j);
+                    var is_char_in_table = table.find(r => r.letter == bad_match_char);
+                    if (is_char_in_table) {
+                        var shift_amount = is_char_in_table.value;
+                        i += shift_amount;
+                    } else {
+                        i += pattern.length;
+                    }
+                }
+            }
+            return pattern_found_indexes;
+        }
+        var a = boyer("ABC", "KLMANSGASKGABCLASKGAGJSMABC");
         console.log(a);
     </script>
 </body>
