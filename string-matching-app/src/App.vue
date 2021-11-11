@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <StringMatching msg="Welcome to Your Vue.js App"/>
+    <img  src="./assets/string-matching.jpg" style="width:300px;height:300px;">
+    <StringMatching />
   </div>
 </template>
 
@@ -17,7 +17,10 @@ export default {
 </script>
 
 <style>
-#app {
+/* # means this style is just effecting the element which has id app */
+/*  using .app will effect all of the elements that has the class property as 'app' */
+
+#app { 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,4 +28,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>

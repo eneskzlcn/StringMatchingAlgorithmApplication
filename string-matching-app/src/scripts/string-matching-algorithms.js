@@ -1,5 +1,5 @@
 // this function will return an number array which are the indexes of the text where the pattern found.
-export default function naive_string_matching(pattern, text) // 'text' is the string that we search for given 'pattern' string.
+export function naive_string_matching(pattern, text) // 'text' is the string that we search for given 'pattern' string.
 {
     //the time complexity of naive string matching algorithm is  O( m * (n - m + 1)) where n is the text length and m is the pattern length 
 
