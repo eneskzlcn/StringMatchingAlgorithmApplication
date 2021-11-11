@@ -6,9 +6,10 @@
 
 ## Boyer-Moore Algorithm Test
 
-* Select Algorithm
+* Select Algorithm "Boyer Moore"
 * Click Add
 
 ## Naive Algorithm Test
 
+* Select Algorithm "Naive Matching"
 * Click Add

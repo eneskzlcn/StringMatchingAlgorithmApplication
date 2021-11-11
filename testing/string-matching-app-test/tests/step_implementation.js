@@ -17,7 +17,8 @@ const {
     text,
     into,
     textBox,
-    evaluate
+    evaluate,
+    dropDown
 } = require('taiko');
 const assert = require("assert");
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
@@ -45,8 +46,9 @@ step("Write Pattern <pattern>", async function(pattern) {
     await write(pattern);
     await press("Tab");
 });
-step("Select Algorithm", async function() {
+step("Select Algorithm <name>", async function(name) {
     await press('ArrowDown');
+    await dropDown('Choose Algorithm').select(name);
 });
 step("Click Add", async function() {
     await click("Add");
