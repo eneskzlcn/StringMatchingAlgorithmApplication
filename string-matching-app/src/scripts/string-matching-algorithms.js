@@ -43,7 +43,7 @@ export function boyer_moore_string_matching(pattern, text) {
 
         if (j < 0) // that means the inner while loop completed succesfully. so the pattern found at i index
         {
-            pattern_found_indexes.push(i);
+            pattern_found_indexes.push(i); //save this index and shift i 1 
             i++;
         } else {
             var bad_match_char = text.charAt(i + j);
@@ -73,7 +73,5 @@ export function boyer_moore_creating_bad_suffix_table(pattern) {
             "value": value
         });
     }
-
     return table;
-    //console.log(table);
 }
