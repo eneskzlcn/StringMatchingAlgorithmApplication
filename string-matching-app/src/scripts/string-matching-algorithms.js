@@ -25,3 +25,55 @@ export function naive_string_matching(pattern, text) // 'text' is the string tha
     }
     return pattern_found_indexes;
 }
+
+export function boyer_moore_string_matching(pattern, text) {
+
+    var pattern_found_indexes = [];
+    //create table for pattern
+    var table = boyer_moore_creating_bad_suffix_table(pattern);
+
+    console.log(table);
+    // loop from 0 th index to (text length - pattern length) 'th index
+    let i = 0;
+    while (i <= (text.length - pattern.length)) {
+        let j = pattern.length - 1;
+
+        while (j >= 0 && (pattern.charAt(j) == text.charAt(i + j)))
+            j--;
+
+        if (j < 0) // that means the inner while loop completed succesfully. so the pattern found at i index
+        {
+            pattern_found_indexes.push(i);
+            i++;
+        } else {
+            var bad_match_char = text.charAt(i + j);
+            var is_char_in_table = table.find(r => r.letter == bad_match_char);
+            if (is_char_in_table) {
+                var shift_amount = is_char_in_table.value;
+                i += shift_amount;
+            } else {
+                i += pattern.length;
+            }
+        }
+    }
+    return pattern_found_indexes;
+}
+//this functions find the bad suffix value for each character in pattern by the bad suffix table formula
+export function boyer_moore_creating_bad_suffix_table(pattern) {
+    var table = []; // en empty table. this table will contain objects in this type ex : {letter: 'A', value: 5}
+
+    for (let i = 0; i < pattern.length; i++) { // loop to reach every char in pattern string
+        let letter = pattern.charAt(i); // char at ith index
+        let value = Math.max(1, (pattern.length - i - 1)); // this is the bad suffix table formula  val = max(1,(len-index-1))
+
+        let is_letter_added = table.find(r => r.letter == letter); //if the letter already in array do not push the same letter again. Just update the older objects 'value' with new found value
+        if (is_letter_added) is_letter_added.value = value;
+        else table.push({
+            "letter": letter,
+            "value": value
+        });
+    }
+
+    return table;
+    //console.log(table);
+}

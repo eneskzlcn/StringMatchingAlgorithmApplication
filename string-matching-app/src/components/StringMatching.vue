@@ -25,21 +25,19 @@
         <label for="" style="margin-top:10px">Result: </label>
         <p > {{result}}</p>
     </div>
-
-    <!-- <ResultAlert/> -->
   
   </div>
 
 </template>
 
 <script>
-// import ResultAlert from './ResultAlert.vue';
-import {naive_string_matching} from  '../scripts/string-matching-algorithms'
 
+import {naive_string_matching} from  '../scripts/string-matching-algorithms'
+import {boyer_moore_string_matching} from  '../scripts/string-matching-algorithms'
 export default {
   name: 'StringMatching',
   components: {
-    // ResultAlert
+    
   },
   props: {
    
@@ -61,7 +59,8 @@ export default {
 
         },
         {
-          name: "Bayer Moore"
+          name: "Boyer Moore",
+          func: boyer_moore_string_matching
         }
       ]
     }
