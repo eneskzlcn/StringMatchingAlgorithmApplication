@@ -5,14 +5,14 @@
     
     <!-- Give the text to search a pattern in -->
     <label for="text" style="margin-top:10px">Text To Be Searched </label>
-    <input type="text" class="form-control" id="text"  placeholder="Enter text">
+    <input onload="exam" type="text" class="form-control" id="text"  placeholder="Enter text">
 
     <!-- Give the pattern to search in given text -->
     <label for="pattern" style="margin-top:10px">Search Pattern </label>
     <input type="text" class="form-control" id="pattern"  placeholder="Enter pattern">
     
     <!-- select the algorithm from select to use string matching -->
-    <label for="algorithm-select" style="margin-top:10px">Choose Algorithm </label>
+    <label for="algorithm-select" style="margin-top:10px">Choose Algorithm</label>
     <select class="form-control" id = 'algorithm-select'>
       <option v-for="(algorithm, index) in used_algorithms" :key="index"> {{algorithm.name}}</option>
     </select>
@@ -81,7 +81,15 @@ export default {
       
       this.result = (res.length == 0 ) ? "Not Found" : res;
 
+    },
+    exam()
+    {
+      document.getElementById('text').focus();
     }
+  },
+  mounted()
+  {
+    this.exam();
   }
 }
 
