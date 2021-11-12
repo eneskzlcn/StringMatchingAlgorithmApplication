@@ -1,24 +1,18 @@
 # string-matching-app
 
-## Project setup
-```
-npm install
-```
+## Main Page
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![](https://eneskzlcn.github.io/string-matching-application/assets/app-using-example-images/main-page.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Search With Boyer Moore
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![](https://eneskzlcn.github.io/string-matching-application/assets/app-using-example-images/search-with-boyer.png)
+
+
+
+### Search With Naive
+
+![](https://eneskzlcn.github.io/string-matching-application/assets/app-using-example-images/search-with-naive.png)
+
+
