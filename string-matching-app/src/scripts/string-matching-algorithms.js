@@ -32,7 +32,6 @@ export function boyer_moore_string_matching(pattern, text) {
     //create table for pattern
     var table = boyer_moore_creating_bad_suffix_table(pattern);
 
-    console.log(table);
     // loop from 0 th index to (text length - pattern length) 'th index
     let i = 0;
     while (i <= (text.length - pattern.length)) {
@@ -43,15 +42,15 @@ export function boyer_moore_string_matching(pattern, text) {
 
         if (j < 0) // that means the inner while loop completed succesfully. so the pattern found at i index
         {
-            pattern_found_indexes.push(i); //save this index and shift i 1 
+            pattern_found_indexes.push(i); //save this index and shift i one time
             i++;
-        } else {
-            var bad_match_char = text.charAt(i + j);
-            var is_char_in_table = table.find(r => r.letter == bad_match_char);
-            if (is_char_in_table) {
+        } else { // that means there is a mismatch in i+j index. Find the bad character
+            var bad_match_char = text.charAt(i + j); // bad character
+            var is_char_in_table = table.find(r => r.letter == bad_match_char); // control if the char in table( in pattern)
+            if (is_char_in_table) { // if it is , take its value as shift amount and shift i by this amount.
                 var shift_amount = is_char_in_table.value;
                 i += shift_amount;
-            } else {
+            } else { // if the bad character not in table, just pass all the way of it so shit i pattern.length times.
                 i += pattern.length;
             }
         }
